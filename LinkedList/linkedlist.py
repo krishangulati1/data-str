@@ -43,10 +43,29 @@ class LinkedList():
             self.head = value
 
 
+    def get_position(self, value):
+        current = self.head
+        counter = 1
+        if self.head:
+            while current:
+                if current.value == value:
+                    return counter
+                current = current.next
+                counter += 1
+        return None
 
 
-                
-
+    def delete(self, value):
+        current = self.head
+        previous = None
+        while current.value != value and current.next:
+            previous = current
+            current = current.next
+        if current.value == value:
+            if previous:
+                previous.next = current.next
+            else:
+                self.head = current.next
 
 e1 = Node(1)
 e2 = Node(2)
@@ -61,4 +80,11 @@ ll.printll()
 
 print "*************************************************"
 ll.insert_at_pos(2,e4)
+ll.printll()
+
+print "*************************************************"
+print ll.get_position(100)
+
+ll.delete(2)
+print "After applying Dlt Node"
 ll.printll()
